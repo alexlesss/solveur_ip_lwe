@@ -18,7 +18,7 @@ def test_instance(func, nom_test, config, seeds):
     for seed in seeds:
         try:
             A, b, q, t, s, e = gen_instance_cbd(m, n, q, t, seed)
-            s_hat, e_hat, nodes_exp, runtime = solve_lwe_bdd(A, b, q, t)
+            s_hat, e_hat, nodes_exp, runtime = solve_lwe(A, b, q, t)
 
             if s_hat is not None:
                 valide = verifier_solution(s, e, s_hat, e_hat)
@@ -103,25 +103,25 @@ if __name__ == "__main__":
     print("DÉMARRAGE DU BENCHMARK POUR LWE")
     print("==================================================")
     
-    SEEDS_A_TESTER = [1,2,3]  # Liste de seeds à tester
+    SEEDS_A_TESTER = [10]  # Liste de seeds à tester
     # si on souhaite de l'alea, simplement decommenter la ligne suivante et commenter la precedente
     # SEEDS_A_TESTER = [np.random.randint(0, 10000) for _ in range(3)]
     
-    valeurs_m = [150]  # Liste des valeurs de m à tester
+    valeurs_m = [7,9,11,13,15,17,19]  # Liste des valeurs de m à tester
 
     # Cette option active ou desactive les details de chaque seed dans le CSV. 
     # Si False, seul la ligne moyenne est sauvegardée.
     SAUVEGARDER_DETAILS_CSV = False
     nom_fichier = "resultats_bench.csv"
 
-    for m_val in valeurs_m:
-        config = {"m": m_val}
-        label = f"m_mobile (m={m_val})"
+    for n_val in valeurs_m:
+        config = {"n": n_val}
+        label = f"n_mobile (n={n_val})"
         
         print(f"Lancement de {label}...")
         
         lignes_resultats = test_instance(
-            func=m_mobile,
+            func=n_mobile,
             nom_test=label,  
             config=config, 
             seeds=SEEDS_A_TESTER  

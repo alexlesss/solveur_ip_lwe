@@ -23,7 +23,7 @@ from fpylll import IntegerMatrix, LLL, BKZ
 # résoudre le problème.
 # Nous intialisons aussi un paramètre de limite de temps, qui sera fixé à 30 minutes, 
 # donc 1800 secondes. Il est en paramètre pour une raison de flexibilité.
-def solve_lwe(A,b,q,t, time_limit=300):
+def solve_lwe(A,b,q,t, time_limit=1200):
     
     # Allons chercher la taille du problème pour commencer:
     m, n = A.shape
@@ -47,7 +47,7 @@ def solve_lwe(A,b,q,t, time_limit=300):
     # Nous pouvons donc maintenant construire notre modèle! Rappelons que nos
     # faisons ici dire
     modele = gp.Model("SolveurLWE")
-    modele.setParam('TimeLimit', 300)
+    modele.setParam('TimeLimit', 1200)
     # Comme les problèmes sur lesquels nous allons travailler seront bien con-
     # ditionnés (nous présenterons ce conditionnement plus tard), nous pouvons
     # assumer qu'il n'y a qu'une seule solution valide.
@@ -265,7 +265,7 @@ def solve_lwe_bdd(A, b, q, t, time_limit=250):
     u_bar = np.concatenate((np.zeros(n, dtype=int), u))
 
     modele = gp.Model("SolveurLWE_LLL")
-    modele.setParam('TimeLimit', 45)
+    modele.setParam('TimeLimit', 1500)
     modele.setParam('SolutionLimit', 1)
     modele.setParam('Threads', 6)
 

@@ -22,9 +22,9 @@ def m_petit_n(m, n):
     return m, n, q, max(0, t)
 
 def m_mobile(m):
-    n = 100
-    q = 3329
-    t = 2
+    n = 40
+    q = 1601
+    t = 20
     return m, n, q, max(0, t)
 
 def q_mobile(q):
@@ -34,9 +34,9 @@ def q_mobile(q):
     return m, n, q, max(0,t)
 
 def n_mobile(n):
-    m = 20
-    q = 149
-    t = 2
+    m = 35
+    q = 101
+    t = 4
     return m, n, q, max(0, t)
 
 def relativement_bien_cond(m):
